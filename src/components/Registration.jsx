@@ -7,7 +7,7 @@ const LoginRegister = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);  // New state for toggling
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleRegistration = (e) => {
     e.preventDefault();
