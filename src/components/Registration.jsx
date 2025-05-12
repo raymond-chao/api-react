@@ -1,36 +1,94 @@
 import { useState } from "react";
+import { FaUser, FaLock } from "react-icons/fa";
+import "../index.css";
+import React from "react";
 
-const Registration = () => {
+const LoginRegister = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);  // New state for toggling
 
   const handleRegistration = (e) => {
     e.preventDefault();
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    alert("Registration successful!");
+    setMessage("Registration successful!");
+  };
+
+
+     const handleLogin = (e) => {
+    e.preventDefault();
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+    setMessage("Login successful!");
+  };
+
+  const toggleForm = () => {
+    setIsRegistering(!isRegistering);
   };
 
   return (
-    <div>
-      <h1>Registration</h1>
-      <form onSubmit={handleRegistration}>
-        <input 
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}   
-        />
-        <button type="submit">Register</button>
-      </form>
+    <div className={`wrapper ${isRegistering ? "active" : ""}`}>
+      <div className={`form-box ${isRegistering ? "register" : "login"}`}>
+        <form onSubmit={isRegistering ? handleRegistration : handleLogin}>
+          <h1>{isRegistering ? "Register" : "Login"}</h1>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <FaUser className="icon" />
+          </div>
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FaLock className="icon" />
+          </div>
+
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#">I agree to the terms & conditions</a>
+          </div>
+
+          <button type="submit">{isRegistering ? "Register" : "Login"}</button>
+
+          {message && <p style={{ color: "green" }}>{message}</p>}
+
+          <div className="register-link">
+            <p>
+              {isRegistering ? (
+                <>
+                  Already have an account?{" "}
+                  <a href="#" onClick={toggleForm}>
+                    Login
+                  </a>
+                </>
+              ) : (
+                <>
+                  Don't have an account?{" "}
+                  <a href="#" onClick={toggleForm}>
+                    Register
+                  </a>
+                </>
+              )}
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Registration;
+export default LoginRegister;
