@@ -119,7 +119,7 @@ form .remember-forgot {
   text-decoration: underline;
 }
 
-form button {
+form button, .joke-button  {
   width: 100%;
   height: 45px;
   background: #fff;
@@ -134,11 +134,11 @@ form button {
   transition: background-color 0.3s ease;
 }
 
-form button:hover {
+form button:hover, .joke-button  {
   background-color: #ddd;
 }
 
-form button:active {
+form button:active, .joke-button  {
   background-color: #ccc;
 }
 
@@ -178,26 +178,16 @@ form .register-link {
   margin-bottom: 20px;
 }
 
-.joke-text {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  border: 1px solid white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.joke-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: white;
+.joke-text{
+  width: 100%;
+  height: 100%;
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
 }
 
-.joke-button:hover {
-}
-
-.joke-button:active {
-}
