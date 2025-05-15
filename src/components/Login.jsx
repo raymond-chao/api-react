@@ -1,18 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import '../index.css';
-import React from 'react';
 
-const Login = () => {
-  const [action, setAction] = useState('');
+const Login = ({ toggleForm }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
-
-  const registerLink = () => {
-    setAction('active');
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -28,10 +22,11 @@ const Login = () => {
   };
 
   return (
-    <div className={`wrapper ${action}`}>
+    <div className="wrapper">
       <div className="form-box login">
         <form onSubmit={handleLogin}>
           <h1>Login</h1>
+
           <div className="input-box">
             <input
               type="text"
@@ -42,6 +37,7 @@ const Login = () => {
             />
             <FaUser className="icon" />
           </div>
+
           <div className="input-box">
             <input
               type="password"
@@ -69,7 +65,13 @@ const Login = () => {
           <div className="register-link">
             <p>
               Don’t have an account?{' '}
-              <a href="#" onClick={registerLink}>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleForm();
+                }}
+              >
                 Register
               </a>
             </p>

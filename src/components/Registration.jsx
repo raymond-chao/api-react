@@ -56,10 +56,9 @@ const LoginRegister = () => {
 
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" />
-              Remember me
+              <input type="checkbox" />  
+              <a href="#"> I agree to the terms & conditions</a> 
             </label>
-            <a href="#">I agree to the terms & conditions</a>
           </div>
 
           <button type="submit">{isRegistering ? "Register" : "Login"}</button>

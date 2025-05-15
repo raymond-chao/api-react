@@ -170,12 +170,15 @@ form .register-link {
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  height: vh;
+  height: 50%;
 }
 
 .joke-header {
-  font-size: 2rem;
+  font-size: 36px;
+  text-align: center;
   margin-bottom: 20px;
+  color: #fff;
+  font-weight: 700;
 }
 
 .joke-text{
