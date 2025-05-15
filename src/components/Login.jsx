@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { FaUser, FaLock } from 'react-icons/fa';
 import '../index.css';
 
-const Login = ({ toggleForm }) => {
+const Login = ({ toggleForm, onAuthSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
 
   const handleLogin = (e) => {
@@ -14,8 +13,8 @@ const Login = ({ toggleForm }) => {
     const storedPassword = localStorage.getItem('password');
 
     if (username === storedUsername && password === storedPassword) {
-      setIsLoggedIn(true);
       setError(null);
+      onAuthSuccess(username);
     } else {
       setError('Invalid username or password');
     }
@@ -59,7 +58,6 @@ const Login = ({ toggleForm }) => {
 
           <button type="submit">Login</button>
 
-          {isLoggedIn && <p style={{ color: 'green' }}>Login successful!</p>}
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
           <div className="register-link">

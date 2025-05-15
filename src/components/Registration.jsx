@@ -3,7 +3,7 @@ import { FaUser, FaLock } from "react-icons/fa";
 import "../index.css";
 import React from "react";
 
-const LoginRegister = () => {
+const LoginRegister = ({ onAuthSuccess }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -17,12 +17,19 @@ const LoginRegister = () => {
   };
 
 
-     const handleLogin = (e) => {
-    e.preventDefault();
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const storedUsername = localStorage.getItem("username");
+        const storedPassword = localStorage.getItem("password");
+
+  if (username === storedUsername && password === storedPassword) {
     setMessage("Login successful!");
-  };
+    onAuthSuccess(username);
+  } else {
+    setMessage("Invalid username or password");
+  }
+};
+
 
   const toggleForm = () => {
     setIsRegistering(!isRegistering);
@@ -52,12 +59,13 @@ const LoginRegister = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <FaLock className="icon" />
+
           </div>
 
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" />  
-              <a href="#"> I agree to the terms & conditions</a> 
+              <input type="checkbox" />
+             <a href="#"> I agree to the terms & conditions</a>
             </label>
           </div>
 
